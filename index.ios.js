@@ -17,7 +17,7 @@ var ROUTES = {
 };
 
 
-var hnreader2 = React.createClass({  
+var hnreader2 = React.createClass({
 
   renderScene: function(route, navigator) {
 
@@ -29,8 +29,8 @@ var hnreader2 = React.createClass({
 
   render: function() {
     return (
-      <Navigator 
-        style={styles.container} 
+      <Navigator
+        style={styles.container}
         initialRoute={{name: 'news_items', url: ''}}
         renderScene={this.renderScene}
         configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }} />

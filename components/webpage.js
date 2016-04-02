@@ -20,9 +20,9 @@ var WebPage = React.createClass({
 	},
 
 	render: function(){
-			
+
 		return (<View style={styles.container}>
-		
+
 			<View style={styles.webview_header}>
 			  <View style={styles.header_item}>
 			  	<Button style={styles.button} onPress={this.back}>Back</Button>
@@ -36,10 +36,10 @@ var WebPage = React.createClass({
 			</View>
 
 			<View style={styles.webview_body}>
-				<WebView 
-					url={this.props.url}
+				<WebView
+					source={this.props.url}
 					onNavigationStateChange={this.onNavigationStateChange}
-					
+
 				/>
 			</View>
 		</View>);
@@ -51,7 +51,7 @@ var WebPage = React.createClass({
 	},
 
 	onNavigationStateChange: function(navState) {
-		
+
 		if(!navState.loading){
 			this.setState({
 				isLoading: false,
@@ -59,7 +59,7 @@ var WebPage = React.createClass({
 			});
 		}
 	},
-	
+
 	back: function(){
 	   this.props.navigator.pop();
   	}

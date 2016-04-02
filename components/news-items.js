@@ -31,11 +31,11 @@ var NewsItems = React.createClass({
 		  }),
 		  news: {},
 		  loaded: false
-		}    
+		}
 	},
 
 	render: function() {
-		
+
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}>
@@ -43,7 +43,7 @@ var NewsItems = React.createClass({
 						<Text style={styles.header_text}>{this.state.title}</Text>
 					</View>
 					<View style={styles.header_item}>
-					{  !this.state.loaded && 
+					{  !this.state.loaded &&
 						<GiftedSpinner />
 					}
 					</View>
@@ -51,33 +51,33 @@ var NewsItems = React.createClass({
 				<View style={styles.body}>
 				<ScrollView ref="scrollView">
 				{
-					this.state.loaded && 
-					
+					this.state.loaded &&
+
 					<ListView initialListSize={1} dataSource={this.state.news} style={styles.news} renderRow={this.renderNews}></ListView>
-					
+
 				}
 				</ScrollView>
 				</View>
 			</View>
-		); 
-		
+		);
+
 	},
 
 	componentDidMount: function() {
-			
+
 		AsyncStorage.getItem('news_items').then((news_items_str) => {
 
 			var news_items = JSON.parse(news_items_str);
 
 			if(news_items != null){
-				
+
 				AsyncStorage.getItem('time').then((time_str) => {
 					var time = JSON.parse(time_str);
 					var last_cache = time.last_cache;
 					var current_datetime = moment();
 
 					var diff_days = current_datetime.diff(last_cache, 'days');
-					
+
 					if(diff_days > 0){
 						this.getNews();
 					}else{
@@ -85,7 +85,7 @@ var NewsItems = React.createClass({
 					}
 
 				});
-				
+
 
 			}else{
 				this.getNews();
@@ -110,7 +110,7 @@ var NewsItems = React.createClass({
 	},
 
 	updateNewsItemsUI: function(news_items){
-	
+
 		if(news_items.length == TOTAL_NEWS_ITEMS){
 
 			var ds = this.state.dataSource.cloneWithRows(news_items);
@@ -120,7 +120,7 @@ var NewsItems = React.createClass({
 			});
 
 		}
-		
+
 	},
 
 	updateNewsItemDB: function(news_items){
@@ -131,8 +131,8 @@ var NewsItems = React.createClass({
 
 	},
 
-  	getNews: function() {	
-  		
+  	getNews: function() {
+
   		var TOP_STORIES_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json';
   		var news_items = [];
 
@@ -140,7 +140,7 @@ var NewsItems = React.createClass({
 
 	    api(TOP_STORIES_URL).then(
 	      (top_stories) => {
-	      		
+
 	      		for(var x = 0; x <= 10; x++){
 
 	      			var story_url = "https://hacker-news.firebaseio.com/v0/item/" + top_stories[x] + ".json";
@@ -156,15 +156,15 @@ var NewsItems = React.createClass({
 	      			);
 
 	      		}
-	      		
+
 
 	        }
 
 
 
 	    );
-		
-		
+
+
   	}
 
 });
