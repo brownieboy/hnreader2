@@ -1,4 +1,3 @@
-'use strict';
 var React = require('react-native');
 
 var {
@@ -15,7 +14,7 @@ var {
 var Button = require('react-native-button');
 var GiftedSpinner = require('react-native-gifted-spinner');
 
-var api = require('../src/api.js');
+var api = require('../api.js');
 
 var moment = require('moment');
 

@@ -1,51 +1,51 @@
-'use strict';
-var React = require('react-native');
+import React from "react-native";
 
-var {
-  AppRegistry,
-  StyleSheet,
-  Navigator
+const {
+    AppRegistry,
+    StyleSheet,
+    Navigator
 } = React;
 
 
-var NewsItems = require('./components/news-items');
-var WebPage = require('./components/webpage');
+import NewsItems from "./src/components/news-items";
+import WebPage from "./src/components/webpage";
 
-var ROUTES = {
-  news_items: NewsItems,
-  web_page: WebPage
+const ROUTES = {
+    news_items: NewsItems,
+    web_page: WebPage
 };
 
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
+
 var hnreader2 = React.createClass({
 
-  renderScene: function(route, navigator) {
+    renderScene: function(route, navigator) {
 
-    var Component = ROUTES[route.name];
-    return (
-        <Component route={route} navigator={navigator} url={route.url} />
-    );
-  },
+        const Component = ROUTES[route.name];
+        return (
+            <Component route={route} navigator={navigator} url={route.url} />
+        );
+    },
 
-  render: function() {
-    return (
-      <Navigator
+    render: function() {
+        return (
+            <Navigator
         style={styles.container}
-        initialRoute={{name: 'news_items', url: ''}}
+        initialRoute={{name: "news_items", url: ""}}
         renderScene={this.renderScene}
         configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }} />
-    );
+        );
 
-  },
+    }
 
 
 });
 
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
 
-AppRegistry.registerComponent('hnreader2', () => hnreader2);
+AppRegistry.registerComponent("hnreader2", () => hnreader2);
